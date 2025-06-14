@@ -1,10 +1,17 @@
+import Dashboard from "./components/dashboard"
+import Header from "./components/Header"
 
 function App() {
 
   return (
-    <>
-      <div>Sky Ceylon</div>
-    </>
+    <div className="flex flex-col p-2 h-screen w-screen">
+      <div className="m-1">
+        <Header />
+      </div>
+      <div className="m-1 flex-1">
+        <Dashboard />
+      </div>
+    </div>
   )
 }
 
