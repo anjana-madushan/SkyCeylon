@@ -34,7 +34,7 @@ const Dashboard = () => {
   return (
     <div className="h-full">
       <div className="flex">
-        <div className="flex flex-col w-3/4">
+        <div className="flex flex-col w-2/3">
           <div className="mb-4">
             <Temperature />
           </div>
@@ -47,7 +47,7 @@ const Dashboard = () => {
             <SunSetRise />
           </div>
         </div>
-        <div className="flex flex-col w-1/4 ml-4">
+        <div className="flex-1 flex-col ml-4">
           <div className="mb-4">
             <Today />
           </div>
