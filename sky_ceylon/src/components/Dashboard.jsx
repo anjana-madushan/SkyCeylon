@@ -35,15 +35,15 @@ const Dashboard = () => {
     <div className="h-full">
       <div className="flex">
         <div className="flex flex-col w-2/3">
-          <div className="mb-4">
-            <Temperature />
-          </div>
           <div className="grid grid-cols-3 gap-4">
+            <div className="col-span-2"><Temperature /></div>
+            <div className="flex flex-col gap-2">
+              <Humidity />
+              <CloudCover />
+            </div>
             <Wind />
             <UV />
             <Rainfall />
-            <Humidity />
-            <CloudCover />
             <SunSetRise />
           </div>
         </div>
