@@ -10,6 +10,7 @@ import Rainfall from "./overview/Rainfall";
 import Humidity from "./overview/Humidity";
 import CloudCover from "./overview/CloudCover";
 import SunSetRise from "./overview/SunSetRise";
+import AirQuality from "./overview/AirQuality";
 
 const Dashboard = () => {
 
@@ -44,7 +45,8 @@ const Dashboard = () => {
             <Wind />
             <UV />
             <Rainfall />
-            <SunSetRise />
+            <div className="col-span-2"><SunSetRise /></div>
+            <AirQuality />
           </div>
         </div>
         <div className="flex-1 flex-col ml-4">
