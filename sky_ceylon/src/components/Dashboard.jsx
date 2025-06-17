@@ -33,8 +33,8 @@ const Dashboard = () => {
   // }, []);
 
   return (
-    <div className="h-full">
-      <div className="flex">
+    <div className="h-screen overflow-hidden">
+      <div className="flex h-full">
         <div className="flex flex-col w-2/3">
           <div className="grid grid-cols-3 gap-4">
             <div className="col-span-2"><Temperature /></div>
@@ -49,14 +49,15 @@ const Dashboard = () => {
             <AirQuality />
           </div>
         </div>
-        <div className="flex-1 flex-col ml-4">
-          <div className="mb-4">
+        <div className="flex-1 flex flex-col ml-4 overflow-hidden">
+          <div className="mb-4 h-1/2 overflow-y-scroll">
             <Today />
           </div>
-          <div className="flex-1">
+          <div className="h-1/2 overflow-y-auto">
             <NextThreeDays />
           </div>
         </div>
+
       </div>
     </div>
   );

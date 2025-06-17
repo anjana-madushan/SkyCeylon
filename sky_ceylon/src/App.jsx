@@ -1,4 +1,4 @@
-import Dashboard from "./components/dashboard"
+import Dashboard from "./components/Dashboard"
 import Header from "./components/Header"
 
 function App() {

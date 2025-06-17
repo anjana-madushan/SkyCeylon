@@ -8,6 +8,14 @@
 }
 
 @layer base {
+
+  html,
+  body,
+  #root {
+    height: 100%;
+    overflow: hidden;
+  }
+
   html {
     font-family: var(--font-display);
   }
