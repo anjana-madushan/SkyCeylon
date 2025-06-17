@@ -50,10 +50,10 @@ const Dashboard = () => {
           </div>
         </div>
         <div className="flex-1 flex flex-col ml-4 overflow-hidden">
-          <div className="mb-4 h-1/2 overflow-y-scroll">
+          <div className="mb-4 h-5/12 overflow-y-scroll">
             <Today />
           </div>
-          <div className="h-1/2 overflow-y-auto">
+          <div className="overflow-y-auto">
             <NextThreeDays />
           </div>
         </div>
