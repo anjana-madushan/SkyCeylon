@@ -1,8 +1,7 @@
-// import { useEffect } from "react";
-// import axios from "axios";
+import { useState, useEffect } from "react";
+import axios from "axios";
 import Today from "./Forcast/Today";
 import NextThreeDays from "./Forcast/NextThreeDays";
-
 import Temperature from "./overview/temperature"
 import Wind from "./overview/wind";
 import UV from "./overview/UV";
@@ -11,8 +10,7 @@ import Humidity from "./overview/Humidity";
 import CloudCover from "./overview/CloudCover";
 import SunSetRise from "./overview/SunSetRise";
 import AirQuality from "./overview/AirQuality";
-import { useState, useEffect } from "react";
-import axios from "axios";
+import Header from "./Header";
 
 const Dashboard = () => {
 
@@ -42,35 +40,52 @@ const Dashboard = () => {
   }, []);
 
   const currentWeather = weather?.current;
+  const locationDetails = weather?.location;
   console.log(weather)
 
   return (
-    <div className="h-screen overflow-hidden">
-      <div className="flex h-full">
-        <div className="flex flex-col w-2/3">
-          <div className="grid grid-cols-3 gap-4">
-            <div className="col-span-2"><Temperature condition={currentWeather?.condition} temp_c={currentWeather?.temp_c} temp_f={currentWeather?.temp_f} feelslike_c={currentWeather?.feelslike_c} feelslike_f={currentWeather?.feelslike_f} /></div>
-            <div className="flex flex-col gap-2">
-              <Humidity />
-              <CloudCover />
-            </div>
-            <Wind />
-            <UV />
-            <Rainfall />
-            <div className="col-span-2"><SunSetRise /></div>
-            <AirQuality />
-          </div>
-        </div>
-        <div className="flex-1 flex flex-col ml-4 overflow-hidden">
-          <div className="mb-4 h-5/12 overflow-y-scroll">
-            <Today />
-          </div>
-          <div className="overflow-y-auto">
-            <NextThreeDays />
-          </div>
-        </div>
+    <div className="flex flex-col p-2 h-screen w-screen">
 
+      <div className="m-1">
+        <Header location={locationDetails} />
       </div>
+
+      <div className="m-1 flex-1">
+        <div className="h-screen overflow-hidden">
+          <div className="flex h-full">
+            <div className="flex flex-col w-2/3">
+              <div className="grid grid-cols-3 gap-4">
+                <div className="col-span-2">
+                  <Temperature
+                    condition={currentWeather?.condition}
+                    temp_c={currentWeather?.temp_c}
+                    temp_f={currentWeather?.temp_f}
+                    feelslike_c={currentWeather?.feelslike_c}
+                    feelslike_f={currentWeather?.feelslike_f} />
+                </div>
+                <div className="flex flex-col gap-2">
+                  <Humidity />
+                  <CloudCover />
+                </div>
+                <Wind />
+                <UV />
+                <Rainfall />
+                <div className="col-span-2"><SunSetRise /></div>
+                <AirQuality />
+              </div>
+            </div>
+            <div className="flex-1 flex flex-col ml-4 overflow-hidden">
+              <div className="mb-4 h-5/12 overflow-y-scroll">
+                <Today />
+              </div>
+              <div className="overflow-y-auto">
+                <NextThreeDays />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
     </div>
   );
 }
