@@ -11,33 +11,45 @@ import Humidity from "./overview/Humidity";
 import CloudCover from "./overview/CloudCover";
 import SunSetRise from "./overview/SunSetRise";
 import AirQuality from "./overview/AirQuality";
+import { useState, useEffect } from "react";
+import axios from "axios";
 
 const Dashboard = () => {
 
-  // useEffect(() => {
-  //   const fetchData = async () => {
-  //     try {
-  //       const res = await axios.get(`http://api.weatherapi.com/v1/forecast.json`, {
-  //         params: {
-  //           key: import.meta.env.VITE_WEATHER_API_KEY,
-  //           q: 'Colombo',
-  //           days: 3
-  //         }
-  //       });
-  //       console.log(res);
-  //     } catch (error) {
-  //       console.log(error)
-  //     }
-  //   }
-  //   fetchData();
-  // }, []);
+  const [weather, setWeather] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+    const fetchWeatherData = async () => {
+      try {
+        const response = await axios.get(import.meta.env.VITE_WEATHER_API_BASE_URL, {
+          params: {
+            key: import.meta.env.VITE_WEATHER_API_KEY,
+            q: 'Colombo',
+            days: 3
+          }
+        })
+        setWeather(response.data);
+      } catch (error) {
+        console.error('Error with fetchingn the data', error);
+        setError('Faile to load the weather Data!!!');
+      } finally {
+        setLoading(false);
+      }
+    }
+    fetchWeatherData();
+  }, []);
+
+  const currentWeather = weather?.current;
+  console.log(weather)
 
   return (
     <div className="h-screen overflow-hidden">
       <div className="flex h-full">
         <div className="flex flex-col w-2/3">
           <div className="grid grid-cols-3 gap-4">
-            <div className="col-span-2"><Temperature /></div>
+            <div className="col-span-2"><Temperature condition={currentWeather?.condition} temp_c={currentWeather?.temp_c} temp_f={currentWeather?.temp_f} feelslike_c={currentWeather?.feelslike_c} feelslike_f={currentWeather?.feelslike_f} /></div>
             <div className="flex flex-col gap-2">
               <Humidity />
               <CloudCover />

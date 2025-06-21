@@ -1,11 +1,10 @@
 import { useState } from "react";
 import { IoIosArrowDown } from "react-icons/io";
 
-const Dropdown = () => {
+const Dropdown = ({ selected, setSelected }) => {
   const [isOpen, setIsOpen] = useState(false);
-  const [selected, setSelected] = useState("Celsius");
 
-  const options = ["Celsius", "Fahrenheit", "Kelvin"];
+  const options = ["Celsius", "Fahrenheit"];
 
   return (
     <div className="relative inline-block text-left">
