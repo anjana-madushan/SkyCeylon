@@ -43,50 +43,53 @@ const Dashboard = () => {
   const currentWeather = weather?.current;
   const locationDetails = weather?.location;
   const forecastDetails = weather?.forecast?.forecastday || '';
-  console.log(currentWeather?.air_quality["us-epa-index"])
 
   return (
     <div className="flex flex-col p-2 h-screen w-screen">
-
-      <div className="m-1">
-        <Header location={locationDetails} />
-      </div>
-
-      <div className="m-1 flex-1">
-        <div className="h-screen overflow-hidden">
-          <div className="flex h-full">
-            <div className="flex flex-col w-2/3">
-              <div className="grid grid-cols-3 gap-4">
-                <div className="col-span-2">
-                  <Temperature
-                    condition={currentWeather?.condition}
-                    temp_c={currentWeather?.temp_c}
-                    temp_f={currentWeather?.temp_f}
-                    feelslike_c={currentWeather?.feelslike_c}
-                    feelslike_f={currentWeather?.feelslike_f} />
-                </div>
-                <div className="flex flex-col gap-2">
-                  <Humidity value={currentWeather?.humidity} />
-                  <CloudCover value={currentWeather?.cloud} />
-                </div>
-                <Wind speed={currentWeather?.wind_kph} direction={currentWeather?.wind_dir} />
-                <UV value={currentWeather?.uv} />
-                <Rainfall value={currentWeather?.precip_mm} />
-                <div className="col-span-2"><SunSetRise astro={forecastDetails[0]?.astro} /></div>
-                <AirQuality value={currentWeather?.air_quality["us-epa-index"]} />
-              </div>
-            </div>
-            <div className="flex-1 flex flex-col ml-4 overflow-hidden">
-              <div className="mb-4 h-5/12 overflow-y-scroll">
-                <Today />
-              </div>
-              <div className="overflow-y-auto">
-                <NextThreeDays />
-              </div>
-            </div>
+      {!loading ?
+        <div>
+          <div className="m-1">
+            <Header location={locationDetails} />
           </div>
-        </div>
-      </div>
+
+          <div className="m-1 flex-1">
+            <div className="h-screen overflow-hidden">
+              <div className="flex h-full">
+                <div className="flex flex-col w-2/3">
+                  <div className="grid grid-cols-3 gap-4">
+                    <div className="col-span-2">
+                      <Temperature
+                        condition={currentWeather?.condition}
+                        temp_c={currentWeather?.temp_c}
+                        temp_f={currentWeather?.temp_f}
+                        feelslike_c={currentWeather?.feelslike_c}
+                        feelslike_f={currentWeather?.feelslike_f} />
+                    </div>
+                    <div className="flex flex-col gap-2">
+                      <Humidity value={currentWeather?.humidity} />
+                      <CloudCover value={currentWeather?.cloud} />
+                    </div>
+                    <Wind speed={currentWeather?.wind_kph} direction={currentWeather?.wind_dir} />
+                    <UV value={currentWeather?.uv} />
+                    <Rainfall value={currentWeather?.precip_mm} />
+                    <div className="col-span-2"><SunSetRise astro={forecastDetails[0]?.astro} /></div>
+                    <AirQuality value={currentWeather?.air_quality["us-epa-index"]} />
+                  </div>
+                </div>
+                <div className="flex-1 flex flex-col ml-4 overflow-hidden">
+                  <div className="mb-4 h-5/12 overflow-y-scroll">
+                    <Today forcast={forecastDetails[0]?.hour} />
+                  </div>
+                  <div className="overflow-y-auto">
+                    <NextThreeDays forcast={forecastDetails} />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div> </div>
+        : <p>loading</p>
+      }
+
 
     </div>
   );
