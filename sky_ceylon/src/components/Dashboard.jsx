@@ -25,7 +25,8 @@ const Dashboard = () => {
           params: {
             key: import.meta.env.VITE_WEATHER_API_KEY,
             q: 'Colombo',
-            days: 3
+            days: 3,
+            aqi: 'yes'
           }
         })
         setWeather(response.data);
@@ -41,7 +42,8 @@ const Dashboard = () => {
 
   const currentWeather = weather?.current;
   const locationDetails = weather?.location;
-  console.log(weather)
+  const forecastDetails = weather?.forecast?.forecastday || '';
+  console.log(currentWeather?.air_quality["us-epa-index"])
 
   return (
     <div className="flex flex-col p-2 h-screen w-screen">
@@ -64,14 +66,14 @@ const Dashboard = () => {
                     feelslike_f={currentWeather?.feelslike_f} />
                 </div>
                 <div className="flex flex-col gap-2">
-                  <Humidity />
-                  <CloudCover />
+                  <Humidity value={currentWeather?.humidity} />
+                  <CloudCover value={currentWeather?.cloud} />
                 </div>
-                <Wind />
-                <UV />
-                <Rainfall />
-                <div className="col-span-2"><SunSetRise /></div>
-                <AirQuality />
+                <Wind speed={currentWeather?.wind_kph} direction={currentWeather?.wind_dir} />
+                <UV value={currentWeather?.uv} />
+                <Rainfall value={currentWeather?.precip_mm} />
+                <div className="col-span-2"><SunSetRise astro={forecastDetails[0]?.astro} /></div>
+                <AirQuality value={currentWeather?.air_quality["us-epa-index"]} />
               </div>
             </div>
             <div className="flex-1 flex flex-col ml-4 overflow-hidden">

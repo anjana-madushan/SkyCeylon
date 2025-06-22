@@ -1,6 +1,6 @@
 import { BsDroplet } from "react-icons/bs";
 
-const Humidity = () => {
+const Humidity = ({ value }) => {
 
   return (
     <div className="flex flex-col bg-gray-100 border-none rounded-2xl px-8 pt-2 pb-3 gap-3">
@@ -8,7 +8,7 @@ const Humidity = () => {
         <BsDroplet />
         <p className="text-gray-500">Humidity</p>
       </div>
-      <p className="text-3xl text-center">40%</p>
+      <p className="text-3xl text-center">{value ?? '--'}</p>
     </div>
   )
 }

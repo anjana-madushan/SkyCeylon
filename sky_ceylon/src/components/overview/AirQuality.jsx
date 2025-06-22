@@ -1,8 +1,7 @@
 import { GiSmokeBomb } from "react-icons/gi";
 
-const AirQuality = () => {
+const AirQuality = ({ value }) => {
 
-  const airIndex = 1;
   const maxIndex = 6;
 
   const getAirQualityInfo = (index) => {
@@ -19,7 +18,7 @@ const AirQuality = () => {
     } else if (index === 6) {
       return { level: 'Hazardous', description: 'Emergency: avoid outdoor exposure completely.' };
     } else {
-      return { level: '', description: '', color: '' };
+      return { level: '', description: '' };
     }
   };
 
@@ -31,11 +30,13 @@ const AirQuality = () => {
         <p className="text-gray-500">Air Quality</p>
       </div>
       <div className="flex flex-col items-center">
-        <p className='text-sm font-semibold mb-2 text-blue-400'>{airIndex} / {maxIndex}</p>
+        <p className='text-sm font-semibold mb-2 text-blue-400'>
+          {value !== null && value !== undefined ? `${value}/${maxIndex}` : ''}
+        </p>
         <div className="w-full bg-gray-200 rounded-full h-4">
           <div
             className='h-4 rounded-full bg-blue-400'
-            style={{ width: `${airIndex > maxIndex ? (100) : (airIndex / maxIndex) * 100}%` }}
+            style={{ width: `${value > maxIndex ? (100) : (value / maxIndex) * 100}%` }}
           />
         </div>
         <div className="w-full flex justify-between px-1 text-xs text-gray-500 my-1">
@@ -43,8 +44,8 @@ const AirQuality = () => {
             <span key={i}>{tick}</span>
           ))}
         </div>
-        <p className='text-center mt-2 text-blue-400'>{getAirQualityInfo(airIndex).level}</p>
-        <p className="text-gray-400 text-sm text-center mt-2">{getAirQualityInfo(airIndex).description}</p>
+        <p className='text-center mt-2 text-blue-400'>{getAirQualityInfo(value).level}</p>
+        <p className="text-gray-400 text-sm text-center mt-2">{getAirQualityInfo(value).description}</p>
       </div>
     </div>
   )

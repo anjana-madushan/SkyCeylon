@@ -7,6 +7,7 @@ export const getUVLevelInfo = (uvIndex) => {
       description: 'UV index cannot be negative.'
     };
   } else if (uvIndex < 3) {
+    console.log('here')
     return {
       level: 'Low',
       description: 'Minimal risk. No protection needed.'
