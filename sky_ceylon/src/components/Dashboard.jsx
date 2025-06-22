@@ -17,6 +17,7 @@ const Dashboard = () => {
   const [weather, setWeather] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [location, setLocation] = useState('Colombo');
 
   useEffect(() => {
     const fetchWeatherData = async () => {
@@ -24,7 +25,7 @@ const Dashboard = () => {
         const response = await axios.get(import.meta.env.VITE_WEATHER_API_BASE_URL, {
           params: {
             key: import.meta.env.VITE_WEATHER_API_KEY,
-            q: 'Colombo',
+            q: location,
             days: 3,
             aqi: 'yes'
           }
@@ -38,18 +39,20 @@ const Dashboard = () => {
       }
     }
     fetchWeatherData();
-  }, []);
+  }, [location]);
 
   const currentWeather = weather?.current;
   const locationDetails = weather?.location;
   const forecastDetails = weather?.forecast?.forecastday || '';
+
+  console.log(weather)
 
   return (
     <div className="flex flex-col p-2 h-screen w-screen">
       {!loading ?
         <div>
           <div className="m-1">
-            <Header location={locationDetails} />
+            <Header location={locationDetails} setLocation={setLocation} />
           </div>
 
           <div className="m-1 flex-1">
@@ -63,7 +66,8 @@ const Dashboard = () => {
                         temp_c={currentWeather?.temp_c}
                         temp_f={currentWeather?.temp_f}
                         feelslike_c={currentWeather?.feelslike_c}
-                        feelslike_f={currentWeather?.feelslike_f} />
+                        feelslike_f={currentWeather?.feelslike_f}
+                        timestamp={locationDetails?.localtime} />
                     </div>
                     <div className="flex flex-col gap-2">
                       <Humidity value={currentWeather?.humidity} />
