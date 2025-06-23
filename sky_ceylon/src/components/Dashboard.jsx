@@ -22,7 +22,7 @@ const Dashboard = () => {
   useEffect(() => {
     const fetchWeatherData = async () => {
       try {
-        const response = await axios.get(import.meta.env.VITE_WEATHER_API_BASE_URL, {
+        const response = await axios.get(`${import.meta.env.VITE_WEATHER_API_BASE_URL}/forecast.json`, {
           params: {
             key: import.meta.env.VITE_WEATHER_API_KEY,
             q: location,
