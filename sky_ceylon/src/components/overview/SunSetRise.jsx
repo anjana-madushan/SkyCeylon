@@ -9,30 +9,30 @@ const SunSetRise = ({ astro }) => {
   }
 
   return (
-    <div className="flex flex-col h-full bg-gray-100 border-none rounded-2xl px-8 py-4">
+    <div className="flex flex-col h-full bg-neutral-800 border-none rounded-2xl px-8 py-4">
       <div className="flex items-center gap-2 mb-4">
-        <LuSunMoon />
-        <p className="text-gray-500">Sun & Moon Summary</p>
+        <LuSunMoon className="text-white text-xl" />
+        <p className="text-white">Sun & Moon Summary</p>
       </div>
-      <div className="flex h-full items-center divide-x divide-gray-300">
+      <div className="flex items-center divide-x divide-gray-300">
         <div className="w-1/2 px-4 flex flex-col items-center gap-2">
           <div className="flex items-center gap-2">
-            <p className="text-gray-700 font-semibold text-xl">Sun</p>
-            <GoSun className="text-xl" />
+            <p className="text-white text-xl">Sun</p>
+            <GoSun className="text-xl text-white" />
           </div>
-          <div className="text-xl text-gray-600">
-            <p>{sunrise ? `Rise  - ${sunrise}` : '--'}</p>
-            <p>{sunset ? `Set  - ${sunset}` : '--'}</p>
+          <div className="text-xl text-blue-100">
+            <p>Rise - <span className="font-lubrifont">{sunrise ? `${sunrise}` : '--'}</span></p>
+            <p>Set  - <span className="font-lubrifont">{sunset ? `${sunset}` : '--'}</span></p>
           </div>
         </div>
         <div className="w-1/2 px-4 flex flex-col items-center gap-2">
           <div className="flex items-center gap-2">
-            <p className="text-gray-700 font-semibold text-xl">Moon</p>
-            <GoMoon className="text-xl" />
+            <p className="text-white text-xl">Moon</p>
+            <GoMoon className="text-xl text-white" />
           </div>
-          <div className="text-xl text-gray-600">
-            <p>{moonrise ? `Rise  - ${moonrise}` : '--'}</p>
-            <p>{moonset ? `Set  - ${moonset}` : '--'}</p>
+          <div className="text-xl text-blue-100">
+            <p>Rise - <span className="font-lubrifont">{moonrise ? `${moonrise}` : '--'}</span></p>
+            <p>Set - <span className="font-lubrifont">{moonset ? `${moonset}` : '--'}</span></p>
           </div>
         </div>
       </div>

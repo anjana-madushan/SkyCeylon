@@ -1,4 +1,4 @@
-import { MdMyLocation } from "react-icons/md";
+import { IoMdSearch } from "react-icons/io";
 import { useEffect, useState } from "react";
 import axios from "axios";
 
@@ -47,7 +47,7 @@ const SearchBar = ({ setLocation }) => {
   }, [query]);
 
   const handleSuggestionClick = (suggestionDetails) => {
-    setInput(`${suggestionDetails.name}, ${suggestionDetails.name}, ${suggestionDetails.country}`);
+    setInput(`${suggestionDetails.name}, ${suggestionDetails.region}, ${suggestionDetails.country}`);
     setLocation(suggestionDetails.name);
     setSuggestions([]);
   }
@@ -62,19 +62,19 @@ const SearchBar = ({ setLocation }) => {
           setInput(e.target.value);
           setQuery(e.target.value);
         }}
-        className='w-full px-6 py-2 rounded-md border-3 border-gray-300 outline-none'
+        className='w-full px-6 py-2 rounded-md outline-none bg-neutral-800 text-gray-300'
       />
       <button type="submit"
-        className="absolute right-1 top-1 bottom-1 px-4 bg-gray-500 text-white rounded-md hover:bg-gray-600 transition"
+        className="absolute right-1 top-1 bottom-1 px-4"
         onClick={handleClick}>
-        <MdMyLocation />
+        <IoMdSearch className="text-xl text-blue-100" />
       </button>
       {suggestions.length > 0 && (
         <ul className="absolute z-10 bg-white border border-gray-300 w-full mt-1 rounded-md shadow-md max-h-48 overflow-y-auto">
           {suggestions.map((suggestion, index) => (
             <li
               key={index}
-              className="px-4 py-2 hover:bg-gray-100 cursor-pointer"
+              className="px-4 py-2 hover:bg-blue-200 cursor-pointer"
               onClick={() => handleSuggestionClick(suggestion)}
             >
               {suggestion.name}, {suggestion.region}, {suggestion.country}

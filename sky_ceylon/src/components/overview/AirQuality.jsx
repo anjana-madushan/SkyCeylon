@@ -24,14 +24,14 @@ const AirQuality = ({ value }) => {
 
 
   return (
-    <div className='flex flex-col bg-gray-100 border-none rounded-2xl px-8 pt-2 pb-3 gap-3'>
+    <div className='flex flex-col bg-neutral-800 border-none rounded-2xl px-8 py-2 gap-2'>
       <div className="flex items-center gap-2">
-        <GiSmokeBomb />
-        <p className="text-gray-500">Air Quality</p>
+        <GiSmokeBomb className="text-white" />
+        <p className="text-white">Air Quality</p>
       </div>
       <div className="flex flex-col items-center">
-        <p className='text-sm font-semibold mb-2 text-blue-400'>
-          {value !== null && value !== undefined ? `${value}/${maxIndex}` : ''}
+        <p className='text-xl font-semibold mb-2 text-blue-200 font-lubrifont'>
+          {value !== null && value !== undefined ? value : ''}
         </p>
         <div className="w-full bg-gray-200 rounded-full h-4">
           <div
@@ -39,13 +39,13 @@ const AirQuality = ({ value }) => {
             style={{ width: `${value > maxIndex ? (100) : (value / maxIndex) * 100}%` }}
           />
         </div>
-        <div className="w-full flex justify-between px-1 text-xs text-gray-500 my-1">
+        <div className="w-full flex justify-between px-1 text-xs text-white my-1">
           {[0, 2, 4, 6].map((tick, i) => (
             <span key={i}>{tick}</span>
           ))}
         </div>
-        <p className='text-center mt-2 text-blue-400'>{getAirQualityInfo(value).level}</p>
-        <p className="text-gray-400 text-sm text-center mt-2">{getAirQualityInfo(value).description}</p>
+        <p className='text-center mt-1 text-blue-200'>{getAirQualityInfo(value).level}</p>
+        <p className="text-gray-400 text-sm text-center mt-1">{getAirQualityInfo(value).description}</p>
       </div>
     </div>
   )
