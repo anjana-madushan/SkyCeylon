@@ -1,19 +1,11 @@
 import Dropdown from '../DropDown';
 import { useEffect, useState } from 'react';
 
-const Temperature = ({ condition, temp_c, feelslike_c, temp_f, feelslike_f }) => {
+const Temperature = ({ condition, temp_c, feelslike_c, temp_f, feelslike_f, timestamp }) => {
 
   const [temp, setTemp] = useState(0);
   const [selectedUnit, setSelectedUnit] = useState('Celsius');
   const [feelsLikeTemp, setFeelsLikeTemp] = useState(0);
-
-  //Get Current Time
-  const now = new Date();
-  const currentTime = now.toLocaleTimeString([], {
-    hour: '2-digit',
-    minute: '2-digit',
-    hour12: true
-  });
 
   // Update displayed temperatures based on selected unit
   useEffect(() => {
@@ -32,7 +24,8 @@ const Temperature = ({ condition, temp_c, feelslike_c, temp_f, feelslike_f }) =>
         <p className='text-gray-500'>Current Weather</p>
         <Dropdown selected={selectedUnit} setSelected={setSelectedUnit} />
       </div>
-      <p className='font-semibold'>{currentTime && currentTime}</p>
+      <p className='font-semibold'>{timestamp && timestamp.split(" ")[0]}</p>
+      <p className='font-semibold'>{timestamp && timestamp.split(" ")[1]}</p>
       <div className='flex items-center my-5 mx-5 justify-between'>
         <img
           src={condition?.icon || null}
