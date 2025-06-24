@@ -36,7 +36,6 @@ const SearchBar = ({ setLocation }) => {
             setSuggestions([]);
           }
         } catch (e) {
-          console.error('Error with loading the the locations', e);
           setError('Oops! Something went wrong. Please try again later.');
         } finally {
           setLoading(false);

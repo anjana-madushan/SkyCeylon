@@ -35,7 +35,6 @@ const Dashboard = () => {
         })
         setWeather(response.data);
       } catch (error) {
-        console.error('Error with fetchingn the data', error);
         setError('Oops! Something went wrong. Please try again later.');
       } finally {
         setLoading(false);
