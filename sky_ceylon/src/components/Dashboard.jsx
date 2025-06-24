@@ -4,7 +4,7 @@ import { ImLocation } from "react-icons/im";
 import Today from "./Forcast/Today";
 import NextThreeDays from "./Forcast/NextThreeDays";
 import Temperature from "./overview/Temperature";
-import Wind from "./overview/wind";
+import Wind from './overview/Wind';
 import UV from "./overview/UV";
 import Rainfall from "./overview/Rainfall";
 import Humidity from "./overview/Humidity";
