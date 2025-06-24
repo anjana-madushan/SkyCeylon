@@ -3,9 +3,9 @@ import { useEffect, useState } from 'react';
 
 const Temperature = ({ condition, temp_c, feelslike_c, temp_f, feelslike_f, timestamp }) => {
 
-  const [temp, setTemp] = useState(0);
+  const [temp, setTemp] = useState(null);
   const [selectedUnit, setSelectedUnit] = useState('Celsius');
-  const [feelsLikeTemp, setFeelsLikeTemp] = useState(0);
+  const [feelsLikeTemp, setFeelsLikeTemp] = useState(null);
 
   // Update displayed temperatures based on selected unit
   useEffect(() => {
@@ -26,27 +26,31 @@ const Temperature = ({ condition, temp_c, feelslike_c, temp_f, feelslike_f, time
   const dayName = date.toLocaleDateString("en-US", { weekday: "long" });
 
   return (
-    <div className='bg-blue-200 px-8 py-2 flex flex-col gap-[2px] border-none rounded-2xl justify-center'>
-      <div className='flex w-full justify-between items-center'>
+    <div className='bg-blue-200 pl-4 py-2 flex flex-col gap-[2px] border-none rounded-2xl justify-center h-full'>
+      <div className='flex w-full justify-between'>
+        <div className='flex sm:flex-row flex-col sm:justify-between sm:w-2/3 gap-2'>
         <p className='font-lubrifont text-gray-600'>{todayDate}</p>
         <p className='font-oswald text-gray-600'>{dayName}</p>
         <p className='font-lubrifont text-gray-600'>{todayTime}</p>
+        </div>
         <Dropdown selected={selectedUnit} setSelected={setSelectedUnit} />
       </div>
-      <div className='flex items-center my-5 mx-5 justify-between'>
+      <div className='flex sm:flex-row flex-col items-center sm:my-5  sm:justify-between pr-4'>
         <img
           src={condition?.icon?.replace("64x64", "128x128") || null}
           className='w-25 h-25'
         />
-        <p className='text-6xl mr-5 font-lubrifont'
-        >{temp ?? '--'}{selectedUnit === 'Celsius' ? '°C' : '°F'} </p>
-        <p>Feels like <span className='font-lubrifont'>{feelsLikeTemp ?? '--'}{selectedUnit === 'Celsius' ? '°C' : '°F'}</span></p>
+        <div className='text-center'>
+          <p className='text-6xl md:mr-5 font-lubrifont'>
+            {temp ?? '--'}{selectedUnit === 'Celsius' ? '°C' : '°F'} </p>
+          <p>Feels like <span className='font-lubrifont'>{feelsLikeTemp ?? '--'}{selectedUnit === 'Celsius' ? '°C' : '°F'}</span></p>
+        </div>
+        <p className='text-gray-600 font-oswald text-xl text-center'>
+          {condition?.text
+            ? `There will be ${condition?.text}.`
+            : 'Weather description unavailable'}
+        </p>
       </div>
-      <p className='text-gray-600 font-oswald text-xl'>
-        {condition?.text
-          ? `There will be ${condition?.text}.`
-          : 'Weather description unavailable'}
-      </p>
     </div>
   )
 }
