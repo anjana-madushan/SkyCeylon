@@ -29,12 +29,15 @@ const SearchBar = ({ setLocation }) => {
               }
             });
             setSuggestions(response.data);
+            if (response.data.length === 0) {
+              setError('No matching location found. Please check your spelling.');
+            }
           } else {
             setSuggestions([]);
           }
         } catch (e) {
           console.error('Error with loading the the locations', e);
-          setError('Faile to load the location suggestions!!!');
+          setError('Oops! Something went wrong. Please try again later.');
         } finally {
           setLoading(false);
         }
@@ -52,7 +55,6 @@ const SearchBar = ({ setLocation }) => {
     setSuggestions([]);
   }
 
-
   return (
     <div className="relative w-full max-w-md">
       <input
@@ -61,14 +63,25 @@ const SearchBar = ({ setLocation }) => {
         onChange={(e) => {
           setInput(e.target.value);
           setQuery(e.target.value);
+          setError('');
         }}
         className='w-full px-6 py-2 rounded-md outline-none bg-neutral-800 text-gray-300'
       />
       <button type="submit"
-        className="absolute right-1 top-1 bottom-1 px-4"
-        onClick={handleClick}>
-        <IoMdSearch className="text-xl text-blue-100" />
+        className={`absolute right-1 top-1 bottom-1 px-4 ${suggestions.length === 0 ? 'opacity-50 cursor-not-allowed' : ''
+          }`}
+        onClick={handleClick}
+        disabled={suggestions.length === 0}>
+        <IoMdSearch className="text-xl text-white" />
       </button>
+
+      {error && suggestions.length === 0 && !loading && (
+        <ul className="absolute z-10 bg-white border border-gray-300 w-full mt-1 rounded-md shadow-md max-h-48 overflow-y-auto">
+          <li className="px-4 py-2 text-red-500 bg-white">
+            {error}
+          </li>
+        </ul>
+      )}
       {suggestions.length > 0 && (
         <ul className="absolute z-10 bg-white border border-gray-300 w-full mt-1 rounded-md shadow-md max-h-48 overflow-y-auto">
           {suggestions.map((suggestion, index) => (
