@@ -7,7 +7,7 @@ const UV = ({ value }) => {
   const uvInfo = value !== null && value !== undefined ? getUVLevelInfo(value) : '';
 
   return (
-    <div className='flex flex-col bg-neutral-800 border-none rounded-2xl px-8 py-2 gap-3'>
+    <div className='flex flex-col bg-neutral-800 border-none rounded-2xl px-8 py-2 gap-3 h-full'>
       <div className="flex justify-between mb-1">
         <div className="flex items-center gap-2">
           <WiDaySunny className="text-white text-xl" />

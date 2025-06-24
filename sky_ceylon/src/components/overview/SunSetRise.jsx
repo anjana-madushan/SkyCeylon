@@ -14,8 +14,8 @@ const SunSetRise = ({ astro }) => {
         <LuSunMoon className="text-white text-xl" />
         <p className="text-white">Sun & Moon Summary</p>
       </div>
-      <div className="flex items-center divide-x divide-gray-300">
-        <div className="w-1/2 px-4 flex flex-col items-center gap-2">
+      <div className="flex sm:flex-row flex-col items-center divide-y sm:divide-y-0 sm:divide-x divide-gray-300">
+        <div className="sm:w-1/2 sm:px-4 flex flex-col items-center gap-2">
           <div className="flex items-center gap-2">
             <p className="text-white text-xl">Sun</p>
             <GoSun className="text-xl text-white" />
@@ -25,7 +25,7 @@ const SunSetRise = ({ astro }) => {
             <p>Set  - <span className="font-lubrifont">{sunset ? `${sunset}` : '--'}</span></p>
           </div>
         </div>
-        <div className="w-1/2 px-4 flex flex-col items-center gap-2">
+        <div className="sm:w-1/2 sm:px-4 flex flex-col items-center gap-2">
           <div className="flex items-center gap-2">
             <p className="text-white text-xl">Moon</p>
             <GoMoon className="text-xl text-white" />

@@ -26,12 +26,12 @@ const Temperature = ({ condition, temp_c, feelslike_c, temp_f, feelslike_f, time
   const dayName = date.toLocaleDateString("en-US", { weekday: "long" });
 
   return (
-    <div className='bg-blue-200 pl-4 py-2 flex flex-col gap-[2px] border-none rounded-2xl justify-center h-full'>
+    <div className='flex flex-col bg-blue-200 pl-4 py-2 border-none rounded-2xl h-full'>
       <div className='flex w-full justify-between'>
         <div className='flex sm:flex-row flex-col sm:justify-between sm:w-2/3 gap-2'>
-        <p className='font-lubrifont text-gray-600'>{todayDate}</p>
-        <p className='font-oswald text-gray-600'>{dayName}</p>
-        <p className='font-lubrifont text-gray-600'>{todayTime}</p>
+          <p className='font-lubrifont text-gray-600'>{todayDate}</p>
+          <p className='font-oswald text-gray-600'>{dayName}</p>
+          <p className='font-lubrifont text-gray-600'>{todayTime}</p>
         </div>
         <Dropdown selected={selectedUnit} setSelected={setSelectedUnit} />
       </div>
@@ -41,7 +41,7 @@ const Temperature = ({ condition, temp_c, feelslike_c, temp_f, feelslike_f, time
           className='w-25 h-25'
         />
         <div className='text-center'>
-          <p className='text-6xl md:mr-5 font-lubrifont'>
+          <p className='text-6xl md:mr-5 font-lubrifont break-words overflow-hidden'>
             {temp ?? '--'}{selectedUnit === 'Celsius' ? '°C' : '°F'} </p>
           <p>Feels like <span className='font-lubrifont'>{feelsLikeTemp ?? '--'}{selectedUnit === 'Celsius' ? '°C' : '°F'}</span></p>
         </div>

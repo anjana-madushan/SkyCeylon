@@ -1,8 +1,9 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
+import { ImLocation } from "react-icons/im";
 import Today from "./Forcast/Today";
 import NextThreeDays from "./Forcast/NextThreeDays";
-import Temperature from "./overview/temperature"
+import Temperature from "./overview/Temperature";
 import Wind from "./overview/wind";
 import UV from "./overview/UV";
 import Rainfall from "./overview/Rainfall";
@@ -46,19 +47,25 @@ const Dashboard = () => {
   const forecastDetails = weather?.forecast?.forecastday || '';
 
   return (
-    <div className="flex flex-col px-4 min-h-screen w-screen overflow-auto">
+    <div className="flex flex-col px-4 h-screen w-screen">
       {!loading ? (
         <>
-          <div className="">
+          <div>
             <Header location={locationDetails} setLocation={setLocation} />
           </div>
 
+          <div className='flex md:hidden justify-center'>
+            <ImLocation className='text-xl text-blue-100' />
+            <p className='text-center text-sm text-white font-oswald'>
+              {locationDetails?.name || ''}, {locationDetails?.region || ''}, {locationDetails?.country || ''}
+            </p>
+          </div>
           <div className="m-1 flex-1">
             <div className="w-full">
               <div className="flex flex-col md:flex-row md:h-[85vh] gap-3">
 
                 <div className="w-full md:w-2/3">
-                  <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
+                  <div className="grid grid-cols-1 md:grid-cols-3 gap-3 h-full">
                     <div className="col-start-1 col-end-3 md:col-span-2">
                       <Temperature
                         condition={currentWeather?.condition}
@@ -91,8 +98,8 @@ const Dashboard = () => {
                   </div>
                 </div>
 
-                <div className="w-full md:w-1/3 flex flex-col gap-4">
-                  <div className="flex-1 overflow-y-auto">
+                <div className="w-full md:w-1/3 flex flex-col gap-4 h-full">
+                  <div className="overflow-y-scroll md:h-7/12 h-[600px]">
                     <Today forcast={forecastDetails[0]?.hour} />
                   </div>
                   <div className="flex-1">
@@ -105,8 +112,9 @@ const Dashboard = () => {
         </>
       ) : (
         <p>loading</p>
-      )}
-    </div>
+      )
+      }
+    </div >
 
   );
 }
