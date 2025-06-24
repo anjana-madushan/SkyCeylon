@@ -1,4 +1,4 @@
-import ForcastCard from '../ForcastCard'
+import ForcastCard from '../ui/ForcastCard'
 
 const NextThreeDays = ({ forcast }) => {
 

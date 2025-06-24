@@ -3,7 +3,7 @@ import { IoMdClose } from "react-icons/io";
 import SearchBar from "./SearchBar";
 
 const Sidebar = ({ location, setLocation, onClose }) => {
-  console.log(location);
+
   return (
     <div className="fixed top-0 left-0 h-full w-80 bg-[#121212] z-50 flex flex-col justify-between py-10 px-5">
 

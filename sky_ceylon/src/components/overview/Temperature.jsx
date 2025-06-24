@@ -1,4 +1,4 @@
-import Dropdown from '../DropDown';
+import Dropdown from '../ui/DropDown';
 import { useEffect, useState } from 'react';
 
 const Temperature = ({ condition, temp_c, feelslike_c, temp_f, feelslike_f, timestamp }) => {
