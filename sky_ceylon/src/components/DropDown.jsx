@@ -10,7 +10,7 @@ const Dropdown = ({ selected, setSelected }) => {
     <div className="relative inline-block text-left">
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="flex justify-center gap-1 px-2 w-35 text-gray-600 rounded-md hover:text-gray-600 text-sm"
+        className="flex justify-end gap-1 pr-4 text-gray-600 rounded-md hover:text-gray-800 text-sm"
       >
         {selected}<IoIosArrowDown className="mt-1" />
       </button>
