@@ -1,4 +1,4 @@
-import SearchBar from './searchBar';
+import SearchBar from './SearchBar';
 import { ImLocation } from "react-icons/im";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { useState } from "react";
