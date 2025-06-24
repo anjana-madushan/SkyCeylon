@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 import { ImLocation } from "react-icons/im";
+import { BiError } from "react-icons/bi";
 import Today from "./Forcast/Today";
 import NextThreeDays from "./Forcast/NextThreeDays";
 import Temperature from "./overview/Temperature";
@@ -12,6 +13,7 @@ import CloudCover from "./overview/CloudCover";
 import SunSetRise from "./overview/SunSetRise";
 import AirQuality from "./overview/AirQuality";
 import Header from "./Header";
+import Spinner from "./ui/Spinner";
 
 const Dashboard = () => {
 
@@ -34,7 +36,7 @@ const Dashboard = () => {
         setWeather(response.data);
       } catch (error) {
         console.error('Error with fetchingn the data', error);
-        setError('Faile to load the weather Data!!!');
+        setError('Oops! Something went wrong. Please try again later.');
       } finally {
         setLoading(false);
       }
@@ -48,11 +50,15 @@ const Dashboard = () => {
 
   return (
     <div className="flex flex-col px-4 h-screen w-screen">
-      {!loading ? (
+      {!loading && error && (
+        <div className="flex flex-col justify-center items-center h-screen gap-2">
+          <p className="text-red-500 text-3xl w-[500px] text-center">{error}</p>
+          <BiError className="text-red-500 text-4xl" />
+        </div>
+      )}
+      {!loading && !error ? (
         <>
-          <div>
-            <Header location={locationDetails} setLocation={setLocation} />
-          </div>
+          <Header location={locationDetails} setLocation={setLocation} />
 
           <div className='flex md:hidden justify-center'>
             <ImLocation className='text-xl text-blue-100' />
@@ -111,7 +117,7 @@ const Dashboard = () => {
           </div>
         </>
       ) : (
-        <p>loading</p>
+        <Spinner />
       )
       }
     </div >
