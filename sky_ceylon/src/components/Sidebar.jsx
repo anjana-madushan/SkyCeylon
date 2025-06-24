@@ -1,6 +1,6 @@
 import { ImLocation } from "react-icons/im";
 import { IoMdClose } from "react-icons/io";
-import SearchBar from "./searchBar";
+import SearchBar from "./SearchBar";
 
 const Sidebar = ({ location, setLocation, onClose }) => {
   console.log(location);
@@ -18,17 +18,17 @@ const Sidebar = ({ location, setLocation, onClose }) => {
         <SearchBar setLocation={setLocation} />
       </div>
 
-<div className="flex flex-col items-center text-center gap-2 mt-6">
-      <div className="flex items-center gap-2 mt-6">
-        <ImLocation className="text-xl text-blue-100" />
+      <div className="flex flex-col items-center text-center gap-2 mt-6">
+        <div className="flex items-center gap-2 mt-6">
+          <ImLocation className="text-xl text-blue-100" />
+          <p className="text-blue-100">
+            {location?.name || ''}, {location?.region || ''}, {location?.country || ''}
+          </p>
+        </div>
         <p className="text-blue-100">
-          {location?.name || ''}, {location?.region || ''}, {location?.country || ''}
-        </p>
-      </div>
-       <p className="text-blue-100">
           {location?.localtime || ''}
         </p>
-</div>
+      </div>
     </div>
   );
 };
