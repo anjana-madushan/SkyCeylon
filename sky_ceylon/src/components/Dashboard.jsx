@@ -34,6 +34,7 @@ const Dashboard = () => {
           }
         })
         setWeather(response.data);
+        // eslint-disable-next-line no-unused-vars
       } catch (error) {
         setError('Oops! Something went wrong. Please try again later.');
       } finally {

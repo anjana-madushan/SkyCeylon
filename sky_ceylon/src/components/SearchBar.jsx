@@ -35,6 +35,7 @@ const SearchBar = ({ setLocation }) => {
           } else {
             setSuggestions([]);
           }
+          // eslint-disable-next-line no-unused-vars
         } catch (e) {
           setError('Oops! Something went wrong. Please try again later.');
         } finally {
