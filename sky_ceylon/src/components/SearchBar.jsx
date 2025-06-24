@@ -24,7 +24,7 @@ const SearchBar = ({ setLocation }) => {
           if (query.length > 3) {
             const response = await axios.get(`${import.meta.env.VITE_WEATHER_API_BASE_URL}/search.json`, {
               params: {
-                key: import.meta.env.VITE_WEATHER_API_KEY,
+                key: import.meta.env.VITE_WEATHER_API,
                 q: query
               }
             });

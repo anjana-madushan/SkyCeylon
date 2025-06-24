@@ -25,7 +25,7 @@ const Dashboard = () => {
       try {
         const response = await axios.get(`${import.meta.env.VITE_WEATHER_API_BASE_URL}/forecast.json`, {
           params: {
-            key: import.meta.env.VITE_WEATHER_API_KEY,
+            key: import.meta.env.VITE_WEATHER_API,
             q: location,
             days: 3,
             aqi: 'yes'
