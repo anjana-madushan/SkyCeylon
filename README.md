@@ -19,10 +19,10 @@
 - 📆 **3-day forecast** — Weather outlook for the next 3 days.
 
 ## 🛠 Tech Stack
-
+- ⚡ **Vite** — Frontend build tool [Vite](https://vitejs.dev/)
 - ⚛️ **React** — Frontend JavaScript framework
 - 🎨 **Tailwind CSS** — Utility-first CSS framework for styling
-- ☁️ **WeatherAPI** — Weather data provider
+- ☁️ **[WeatherAPI](https://www.weatherapi.com/)** — Weather data provider
 - 🚀 **Vercel** — Deployment platform
 
 ## 📱 Responsive Design
